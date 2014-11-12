@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "POViewFrameBuilder"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "A small library for semantic layout of UIViews."
   s.homepage     = "https://github.com/timehop/ios-view-frame-builder"
   s.license      = 'MIT'
