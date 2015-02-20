@@ -227,15 +227,15 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     return self;
 }
 
-- (POViewFrameBuilder *)pinToRightInSuperviewWithInset:(CGFloat)inset {
-    return [self pinToRightOfView:nil withInset:inset];
+- (POViewFrameBuilder *)stretchToRightInSuperviewWithInset:(CGFloat)inset {
+    return [self stretchToLeftOfView:nil withInset:inset];
 }
 
-- (POViewFrameBuilder *)pinToBottomInSuperviewWithInset:(CGFloat)inset {
-    return [self pinToTopOfView:nil withInset:inset];
+- (POViewFrameBuilder *)stretchToBottomInSuperviewWithInset:(CGFloat)inset {
+    return [self stretchToTopOfView:nil withInset:inset];
 }
 
-- (POViewFrameBuilder *)pinToRightOfView:(UIView *)view withInset:(CGFloat)inset {
+- (POViewFrameBuilder *)stretchToLeftOfView:(UIView *)view withInset:(CGFloat)inset {
     CGRect r = self.frame;
     r.size.width = CGRectGetWidth(self.view.superview.bounds) - CGRectGetMinX(self.frame) - inset - ((view == nil) ? 0 : (CGRectGetWidth(self.view.superview.frame) - CGRectGetMinX(view.frame)));
     self.frame = r;
@@ -243,9 +243,25 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     return self;
 }
 
-- (POViewFrameBuilder *)pinToTopOfView:(UIView *)view withInset:(CGFloat)inset {
+- (POViewFrameBuilder *)stretchToRightOfView:(UIView *)view withInset:(CGFloat)inset {
+    CGRect r = self.frame;
+    r.size.width = CGRectGetWidth(self.view.superview.bounds) - CGRectGetMinX(self.frame) - inset - ((view == nil) ? 0 : (CGRectGetWidth(self.view.superview.frame) - CGRectGetMaxX(view.frame)));
+    self.frame = r;
+
+    return self;
+}
+
+- (POViewFrameBuilder *)stretchToTopOfView:(UIView *)view withInset:(CGFloat)inset {
     CGRect r = self.frame;
     r.size.height = CGRectGetHeight(self.view.superview.bounds) - CGRectGetMinY(self.frame) - inset - ((view == nil) ? 0 : (CGRectGetHeight(self.view.superview.frame) - CGRectGetMinY(view.frame)));
+    self.frame = r;
+
+    return self;
+}
+
+- (POViewFrameBuilder *)stretchToBottomOfView:(UIView *)view withInset:(CGFloat)inset {
+    CGRect r = self.frame;
+    r.size.height = CGRectGetHeight(self.view.superview.bounds) - CGRectGetMinY(self.frame) - inset - ((view == nil) ? 0 : (CGRectGetHeight(self.view.superview.frame) - CGRectGetMaxY(view.frame)));
     self.frame = r;
 
     return self;

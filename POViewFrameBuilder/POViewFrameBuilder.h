@@ -60,10 +60,12 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 - (POViewFrameBuilder *)alignRightOfView:(UIView *)view offset:(CGFloat)offset;
 
 - (POViewFrameBuilder *)pinToEdgesInSuperview:(UIEdgeInsets)insets;
-- (POViewFrameBuilder *)pinToRightInSuperviewWithInset:(CGFloat)inset;
-- (POViewFrameBuilder *)pinToBottomInSuperviewWithInset:(CGFloat)inset;
-- (POViewFrameBuilder *)pinToRightOfView:(UIView *)view withInset:(CGFloat)inset;
-- (POViewFrameBuilder *)pinToTopOfView:(UIView *)view withInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToRightInSuperviewWithInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToBottomInSuperviewWithInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToLeftOfView:(UIView *)view withInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToRightOfView:(UIView *)view withInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToTopOfView:(UIView *)view withInset:(CGFloat)inset;
+- (POViewFrameBuilder *)stretchToBottomOfView:(UIView *)view withInset:(CGFloat)inset;
 
 + (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacing:(CGFloat)spacing;
 + (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block;
