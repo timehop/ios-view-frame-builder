@@ -330,6 +330,26 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     return [self alignToView:view edge:POViewFrameBuilderEdgeRight offset:offset];
 }
 
++ (void)centerGroupedViewsVerticallyInSuperview:(NSArray *)views withSpacing:(CGFloat)spacing {
+    UIView *firstView = [views firstObject];
+    UIView *superview = firstView.superview;
+
+    CGFloat const vMargin = (CGRectGetHeight(superview.bounds) - [self heightForViewsAlignedVertically:views spacing:spacing]) / 2;
+
+    [[[self alloc] initWithView:[views firstObject]] alignToTopInSuperviewWithInset:vMargin];
+    [self alignViewsVertically:views spacing:spacing];
+}
+
++ (void)centerGroupedViewsHorizontallyInSuperview:(NSArray *)views withSpacing:(CGFloat)spacing {
+    UIView *firstView = [views firstObject];
+    UIView *superview = firstView.superview;
+
+    CGFloat const hMargin = (CGRectGetWidth(superview.bounds) - [self widthForViewsAlignedHorizontally:views spacing:spacing]) / 2;
+
+    [[[self alloc] initWithView:[views firstObject]] alignLeftInSuperviewWithInset:hMargin];
+    [self alignViewsHorizontally:views spacing:spacing];
+}
+
 + (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacing:(CGFloat)spacing {
     return [self alignViews:views direction:direction spacingWithBlock:^CGFloat(UIView *firstView, UIView *secondView) {
         return spacing;
@@ -417,6 +437,41 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     }
 
     return height;
+}
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views spacing:(CGFloat)spacing {
+    return [self widthForViewsAlignedHorizontally:views constrainedToHeight:0.0f spacing:spacing];
+}
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
+    return [self widthForViewsAlignedHorizontally:views constrainedToHeight:0.0f spacingWithBlock:block];
+}
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views constrainedToHeight:(CGFloat)constrainedHeight spacing:(CGFloat)spacing {
+    return [self widthForViewsAlignedHorizontally:views constrainedToHeight:constrainedHeight spacingWithBlock:^CGFloat(UIView *firstView, UIView *secondView) {
+        return spacing;
+    }];
+}
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views constrainedToHeight:(CGFloat)constrainedHeight spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block {
+    CGFloat width = 0.0f;
+
+    UIView *previousView = nil;
+    for (UIView *view in views) {
+        if (constrainedHeight > FLT_EPSILON) {
+            width += [view sizeThatFits:CGSizeMake(CGFLOAT_MAX, constrainedHeight)].width;
+        } else {
+            width += view.bounds.size.width;
+        }
+
+        if (previousView) {
+            width += block != nil ? block(previousView, view) : 0.0f;
+        }
+
+        previousView = view;
+    }
+    
+    return width;
 }
 
 #pragma mark - Resize

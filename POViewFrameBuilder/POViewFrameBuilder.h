@@ -73,6 +73,9 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 - (POViewFrameBuilder *)stretchToTopOfView:(UIView *)view withInset:(CGFloat)inset;
 - (POViewFrameBuilder *)stretchToBottomOfView:(UIView *)view withInset:(CGFloat)inset;
 
++ (void)centerGroupedViewsVerticallyInSuperview:(NSArray *)views withSpacing:(CGFloat)spacing;
++ (void)centerGroupedViewsHorizontallyInSuperview:(NSArray *)views withSpacing:(CGFloat)spacing;
+
 + (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacing:(CGFloat)spacing;
 + (void)alignViews:(NSArray *)views direction:(POViewFrameBuilderDirection)direction spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block;
 
@@ -86,6 +89,12 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 
 + (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacing:(CGFloat)spacing;
 + (CGFloat)heightForViewsAlignedVertically:(NSArray *)views constrainedToWidth:(CGFloat)constrainedWidth spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block;
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views spacing:(CGFloat)spacing;
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block;
+
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views constrainedToHeight:(CGFloat)constrainedHeight spacing:(CGFloat)spacing;
++ (CGFloat)widthForViewsAlignedHorizontally:(NSArray *)views constrainedToHeight:(CGFloat)constrainedHeight spacingWithBlock:(CGFloat (^)(UIView *firstView, UIView *secondView))block;
 
 // Resize
 - (POViewFrameBuilder *)setWidth:(CGFloat)width;
