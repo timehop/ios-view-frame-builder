@@ -55,10 +55,10 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 - (POViewFrameBuilder *)alignLeftInSuperviewWithInsets:(UIEdgeInsets)insets;
 - (POViewFrameBuilder *)alignRightInSuperviewWithInsets:(UIEdgeInsets)insets;
 
-- (POViewFrameBuilder *)alignTopToBottomInSuperviewWithOffset:(CGFloat)offset;
-- (POViewFrameBuilder *)alignBottomToTopInSuperviewWithOffset:(CGFloat)offset;
-- (POViewFrameBuilder *)alignLeftToRightInSuperviewWithOffset:(CGFloat)offset;
-- (POViewFrameBuilder *)alignRightToLeftInSuperviewWithOffset:(CGFloat)offset;
+- (POViewFrameBuilder *)alignTopToBottomOfSuperviewWithOffset:(CGFloat)offset;
+- (POViewFrameBuilder *)alignBottomToTopOfSuperviewWithOffset:(CGFloat)offset;
+- (POViewFrameBuilder *)alignLeftToRightOfSuperviewWithOffset:(CGFloat)offset;
+- (POViewFrameBuilder *)alignRightToLeftOfSuperviewWithOffset:(CGFloat)offset;
 
 - (POViewFrameBuilder *)alignToTopOfView:(UIView *)view offset:(CGFloat)offset;
 - (POViewFrameBuilder *)alignToBottomOfView:(UIView *)view offset:(CGFloat)offset;
