@@ -217,6 +217,30 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     return self;
 }
 
+- (POViewFrameBuilder *)alignTopToBottomInSuperviewWithOffset:(CGFloat)offset {
+    [self alignToTopInSuperviewWithInset:CGRectGetHeight(self.view.superview.bounds)];
+
+    return self;
+}
+
+- (POViewFrameBuilder *)alignBottomToTopInSuperviewWithOffset:(CGFloat)offset {
+    [self alignToTopInSuperviewWithInset:-CGRectGetHeight(self.view.bounds)];
+
+    return self;
+}
+
+- (POViewFrameBuilder *)alignLeftToRightInSuperviewWithOffset:(CGFloat)offset {
+    [self alignLeftInSuperviewWithInset:CGRectGetWidth(self.view.superview.bounds)];
+
+    return self;
+}
+
+- (POViewFrameBuilder *)alignRightToLeftInSuperviewWithOffset:(CGFloat)offset {
+    [self alignLeftInSuperviewWithInset:-CGRectGetWidth(self.view.bounds)];
+
+    return self;
+}
+
 - (POViewFrameBuilder *)pinToEdgesInSuperview:(UIEdgeInsets)insets {
     CGRect superFrame = self.view.superview.frame;
     self.frame = CGRectMake(insets.left,
