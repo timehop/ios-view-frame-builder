@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 @interface POViewFrameBuilder : NSObject
 
 @property (nonatomic, weak, readonly) UIView *view;
+@property (nonatomic, readonly) CGRect frame;
 @property (nonatomic) BOOL automaticallyCommitChanges; // Default is YES
 
 - (id)initWithView:(UIView *)view;
