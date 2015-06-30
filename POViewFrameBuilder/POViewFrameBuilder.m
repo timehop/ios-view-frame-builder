@@ -334,7 +334,7 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     UIView *firstView = [views firstObject];
     UIView *superview = firstView.superview;
 
-    CGFloat const vMargin = (CGRectGetHeight(superview.bounds) - [self heightForViewsAlignedVertically:views spacing:spacing]) / 2;
+    CGFloat const vMargin = floor((CGRectGetHeight(superview.bounds) - [self heightForViewsAlignedVertically:views spacing:spacing]) / 2);
 
     [[[self alloc] initWithView:[views firstObject]] alignToTopInSuperviewWithInset:vMargin];
     [self alignViewsVertically:views spacing:spacing];
@@ -344,7 +344,7 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     UIView *firstView = [views firstObject];
     UIView *superview = firstView.superview;
 
-    CGFloat const hMargin = (CGRectGetWidth(superview.bounds) - [self widthForViewsAlignedHorizontally:views spacing:spacing]) / 2;
+    CGFloat const hMargin = floor((CGRectGetWidth(superview.bounds) - [self widthForViewsAlignedHorizontally:views spacing:spacing]) / 2);
 
     [[[self alloc] initWithView:[views firstObject]] alignLeftInSuperviewWithInset:hMargin];
     [self alignViewsHorizontally:views spacing:spacing];
