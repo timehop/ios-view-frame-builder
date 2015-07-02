@@ -36,6 +36,8 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderDirection) {
 - (POViewFrameBuilder *)setX:(CGFloat)x;
 - (POViewFrameBuilder *)setY:(CGFloat)y;
 - (POViewFrameBuilder *)setOriginWithX:(CGFloat)x y:(CGFloat)y;
+- (POViewFrameBuilder *)setCenterX:(CGFloat)x;
+- (POViewFrameBuilder *)setCenterY:(CGFloat)y;
 
 - (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX;
 - (POViewFrameBuilder *)moveWithOffsetY:(CGFloat)offsetY;

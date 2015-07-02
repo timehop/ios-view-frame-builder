@@ -116,6 +116,18 @@ typedef NS_ENUM(NSUInteger, POViewFrameBuilderEdge) {
     }];
 }
 
+- (POViewFrameBuilder *)setCenterX:(CGFloat)x {
+    self.frame = PORectWithX(self.frame, x - (self.frame.size.width / 2));
+
+    return self;
+}
+
+- (POViewFrameBuilder *)setCenterY:(CGFloat)y {
+    self.frame = PORectWithY(self.frame, y - (self.frame.size.height / 2));
+
+    return self;
+}
+
 - (POViewFrameBuilder *)moveWithOffsetX:(CGFloat)offsetX {
     self.frame = PORectWithX(self.frame, self.frame.origin.x + offsetX);
 
